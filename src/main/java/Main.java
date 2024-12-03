@@ -1,6 +1,8 @@
 import command.Echo;
+import command.LocalComand;
 import command.Type;
 import command.Unknow;
+import util.FileUtils;
 
 import java.util.Scanner;
 
@@ -14,15 +16,21 @@ public class Main {
             Processer processer;
             String result;
             String[] tokens = input.split(" ");
-            if ("echo".equalsIgnoreCase(tokens[0])) {
+            String command = tokens[0];
+            String dir = FileUtils.pathInclued(command);
+            if ("echo".equalsIgnoreCase(command)) {
                 processer = new Processer(new Echo());
-            } else if ("type".equalsIgnoreCase(tokens[0])) {
+            } else if ("type".equalsIgnoreCase(command)) {
                 processer = new Processer(new Type());
+            } else if (dir != null) {
+                processer = new Processer(new LocalComand(dir));
             } else {
                 processer = new Processer(new Unknow());
             }
             result = processer.processCommand(input);
-            System.out.println(result);
+            if (result != null) {
+                System.out.println(result);
+            }
             System.out.print("$ ");
         }
 

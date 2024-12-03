@@ -7,6 +7,6 @@ package command;
 public class Echo implements Strategy {
     @Override
     public String command(String commands) {
-        return commands.substring(5);
+        return commands.substring(4).strip();
     }
 }
