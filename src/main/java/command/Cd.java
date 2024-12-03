@@ -31,10 +31,10 @@ public class Cd implements Strategy {
                 for (int i = 0; i < split.length; i++) {
                     //System.out.println(i + " " + split[i]);
                     String current = split[i];
-                    if("".equals(current) || File.separator.equals(current)){
+                    if (File.separator.equals(current)) {
                         moveTo = moveTo.getParentFile();
-                    }else {
-                        moveTo = new File(moveTo.getAbsolutePath()+current);
+                    } else {
+                        moveTo = new File(moveTo.getAbsolutePath() + current);
                     }
                 }
                 return checkDir(moveTo.getAbsolutePath());
@@ -51,6 +51,15 @@ public class Cd implements Strategy {
             return null;
         } else {
             return String.format("cd: %s: No such file or directory", dir);
+        }
+    }
+
+    public static void main(String[] args) {
+        String str = "../../../a/b/c";
+        String[] split = str.split("\\.\\.");
+        for (int i = 0; i < split.length; i++) {
+            System.out.println(i + " " + split[i]);
+
         }
     }
 }
