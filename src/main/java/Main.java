@@ -6,7 +6,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String input;
         while (!"exit 0".equalsIgnoreCase((input = scanner.nextLine()))) {
-            System.out.println(input + ": command not found");
+            String[] tokens = input.split(" ");
+            if("echo".equalsIgnoreCase(tokens[0])){
+                System.out.println(input.substring(5));
+            }else {
+                System.out.println(input + ": command not found");
+            }
             System.out.print("$ ");
         }
 
