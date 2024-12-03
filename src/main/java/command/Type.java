@@ -17,14 +17,14 @@ public class Type implements Strategy {
     @Override
     public String command(String input) {
         String[] tokens = input.split(" ");
-        
+
         String command = tokens[1];
         if (builtin.contains(command)) {
             return command + " is a shell builtin";
         }
         String dir = pathInclued(command);
         if (dir != null) {
-            return String.format("%s is %s%n", command, dir);
+            return String.format("%s is %s", command, dir);
         } else {
             return command + ": not found";
         }
