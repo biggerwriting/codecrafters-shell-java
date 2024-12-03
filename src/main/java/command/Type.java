@@ -11,7 +11,7 @@ import java.util.Set;
  * @Date: 2024/12/3
  */
 public class Type implements Strategy {
-    public static final Set<String> builtin = Set.of("echo", "exit", "type");
+    public static final Set<String> builtin = Set.of("echo", "exit", "type", "pwd");
 
     @Override
     public String command(String input) {

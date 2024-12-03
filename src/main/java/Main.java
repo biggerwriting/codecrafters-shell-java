@@ -1,7 +1,4 @@
-import command.Echo;
-import command.LocalComand;
-import command.Type;
-import command.Unknow;
+import command.*;
 import util.FileUtils;
 
 import java.util.Scanner;
@@ -22,6 +19,8 @@ public class Main {
                 processer = new Processer(new Echo());
             } else if ("type".equalsIgnoreCase(command)) {
                 processer = new Processer(new Type());
+            } else if ("pwd".equalsIgnoreCase(command)) {
+                processer = new Processer(new Pwd());
             } else if (dir != null) {
                 processer = new Processer(new LocalComand(dir));
             } else {
