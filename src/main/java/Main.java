@@ -14,6 +14,8 @@ public class Main {
             String result;
             String[] tokens = input.split(" ");
             String command = tokens[0];
+
+            // 检查是否为本地path路径下的命令 check if this is command under local path
             String dir = FileUtils.pathInclued(command);
             if ("echo".equalsIgnoreCase(command)) {
                 processer = new Processer(new Echo());

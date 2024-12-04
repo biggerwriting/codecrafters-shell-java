@@ -2,6 +2,10 @@ package command;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.UUID;
 
 import static command.Pwd.pwd;
 
@@ -13,6 +17,7 @@ import static command.Pwd.pwd;
  * @Date: 2024/12/3
  */
 public class Cd implements Strategy {
+    public static final String HOME_DIR = System.getenv("HOME");
     @Override
     public String command(String input) {
         String[] tokens = input.split(" ");
@@ -38,6 +43,10 @@ public class Cd implements Strategy {
                     }
                 }
                 return checkDir(moveTo.getAbsolutePath());
+            } else if ("~".equals(dir)) {
+                System.out.println("home = "+HOME_DIR);
+                dir = HOME_DIR;
+                return checkDir(dir);
             }
         }
         return null;
@@ -59,7 +68,21 @@ public class Cd implements Strategy {
         String[] split = str.split("\\.\\.");
         for (int i = 0; i < split.length; i++) {
             System.out.println(i + " " + split[i]);
-
         }
+
+        Thread thread = new Thread(()->{
+            int loop = 0;
+            while (true){
+                System.out.println("thread execute loop="+loop);
+                loop++;
+                if(Thread.interrupted()){
+                    System.out.println("interrupted");
+                    break;
+                }
+            }
+        });
+        thread.start();
+        thread.interrupt();
+
     }
 }
