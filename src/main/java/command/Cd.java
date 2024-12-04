@@ -44,7 +44,6 @@ public class Cd implements Strategy {
                 }
                 return checkDir(moveTo.getAbsolutePath());
             } else if ("~".equals(dir)) {
-                System.out.println("home = "+HOME_DIR);
                 dir = HOME_DIR;
                 return checkDir(dir);
             }
