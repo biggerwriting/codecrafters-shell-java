@@ -16,7 +16,7 @@ public class Echo implements Strategy {
     }
 
     public static void main(String[] args) {
-        String input="echo \"shell\\\"insidequotes\"hello\\\"";
+        String input="echo \"script'hello'\\\\n'example\"";
         Echo echo = new Echo();
         String command = echo.command(input);
         System.out.println(command);
