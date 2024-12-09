@@ -22,6 +22,14 @@ public class StringUtils {
                 sb = new StringBuilder();
                 continue;
             }
+            if ('"' == character) {
+                while ('"' != (character = input.charAt(++i))) {
+                    sb.append(character);
+                }
+                tokens.add(sb.toString());
+                sb = new StringBuilder();
+                continue;
+            }
             if (' ' != character) {
                 sb.append(character);
             } else if (!sb.isEmpty()) {

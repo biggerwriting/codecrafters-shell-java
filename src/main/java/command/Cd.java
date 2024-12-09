@@ -45,7 +45,7 @@ public class Cd implements Strategy {
             dir = HOME_DIR;
         } else if (dir.startsWith("." + File.separator)) {
             dir = pwd + dir.substring(1);
-        }else {
+        } else {
             dir = pwd + dir;
         }
         return dir;
@@ -61,12 +61,13 @@ public class Cd implements Strategy {
             return String.format("cd: %s: No such file or directory\n", dir);
         }
     }
-//  cd /tmp/mango/raspberry/apple
-public static void main(String[] args) {
-    String input = "cd /tmp/mango/raspberry/apple";
 
-    Cd cd = new Cd();
-    String command = cd.command(input);
-    System.out.println(command);
-}
+    //  cd /tmp/mango/raspberry/apple
+    public static void main(String[] args) {
+        String input = "cd /tmp/mango/raspberry/apple";
+
+        Cd cd = new Cd();
+        String command = cd.command(input);
+        System.out.println(command);
+    }
 }
