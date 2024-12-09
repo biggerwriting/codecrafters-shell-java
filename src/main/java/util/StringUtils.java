@@ -16,9 +16,10 @@ public class StringUtils {
             char character = input.charAt(i);
             if ('\'' == character) {
                 while ('\'' != (character = input.charAt(++i))) {
-                    if ('\\' == character) {
-                        sb.append(input.charAt(++i));
+                    if ('\\' == character && '\'' == (character = input.charAt(++i))) {
+                        sb.append(character);
                     } else {
+                        sb.append('\\');
                         sb.append(character);
                     }
                 }
@@ -26,10 +27,12 @@ public class StringUtils {
             }
             if ('"' == character) {
                 while ('"' != (character = input.charAt(++i))) {
-                    if ('\\' == character) {
-                        sb.append(input.charAt(++i));
-                    } else {
+                    if ('\\' == character && '"' == (character = input.charAt(++i))) {
                         sb.append(character);
+                    }else {
+                        sb.append('\\');
+                        sb.append(character);
+
                     }
                 }
                 continue;
