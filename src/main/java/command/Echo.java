@@ -16,9 +16,27 @@ public class Echo implements Strategy {
     }
 
     public static void main(String[] args) {
-        String input="echo \"script'hello'\\\\n'example\"";
         Echo echo = new Echo();
-        String command = echo.command(input);
+        String input;
+        String command;
+
+        // > echo "mixed\"quote'hello'\\"
+        // Expected: "mixed"quote'hello'\"
+        // Expected:  mixed"quote'hello'\\
+        input="echo \"mixed\\\"quote'hello'\\\\\"";
+        command = echo.command(input);
+        System.out.println(command);
+
+
+        input="echo \"script'hello'\\\\n'example\"";
+        command = echo.command(input);
+        System.out.println(command);
+
+        input="echo \"script'test'\\\\n'world\"";
+        command = echo.command(input);
+        System.out.println(command);
+        input="echo \"script\\\"insidequotes\"test\\\"";
+        command = echo.command(input);
         System.out.println(command);
     }
 }
