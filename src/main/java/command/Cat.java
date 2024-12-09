@@ -20,13 +20,11 @@ public class Cat implements Strategy {
             String filepath = tokens[i];
             String absPath = getAbsPath(filepath);
             try (InputStream inputStream = new FileInputStream(absPath)) {
-
                 byte[] array = new byte[1024];
                 int readLength = 0;
                 while (-1 != (readLength = inputStream.read(array))) {
                     sb.append(new String(array, 0, readLength));
                 }
-
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -35,9 +33,9 @@ public class Cat implements Strategy {
     }
 
     public static void main(String[] args) {
-String input ="cat .\\README.md";
+        String input = "cat .\\README.md";
 
-Cat cat =new Cat();
+        Cat cat = new Cat();
         String command = cat.command(input);
         System.out.println(command);
     }

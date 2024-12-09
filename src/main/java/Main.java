@@ -34,7 +34,7 @@ public class Main {
             }
             result = processer.processCommand(input);
             if (result != null) {
-                System.out.println(result);
+                System.out.print(result);
             }
             System.out.print("$ ");
         }
