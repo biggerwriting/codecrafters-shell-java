@@ -14,4 +14,11 @@ public class Echo implements Strategy {
         String[] tokens = parseCommand(input);
         return String.join(" ", Arrays.stream(tokens, 1, tokens.length).toArray(String[]::new));
     }
+
+    public static void main(String[] args) {
+        String input="echo world     script";
+        Echo echo = new Echo();
+        String command = echo.command(input);
+        System.out.println(command);
+    }
 }

@@ -29,11 +29,12 @@ public class StringUtils {
                 sb=new StringBuilder();
             }
         }
+        tokens.add(sb.toString());
         return  tokens.toArray(tokens.toArray(new String[0]));
     }
 
     public static void main(String[] args) {
-        String input = "cat 'aa' 'bb jj '";
+        String input = "echo world     script";
         String[] strings = parseCommand(input);
         System.out.println(Arrays.asList(strings));
     }
