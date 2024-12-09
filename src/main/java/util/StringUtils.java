@@ -22,8 +22,6 @@ public class StringUtils {
                         sb.append(character);
                     }
                 }
-                tokens.add(sb.toString());
-                sb = new StringBuilder();
                 continue;
             }
             if ('"' == character) {
@@ -34,8 +32,6 @@ public class StringUtils {
                         sb.append(character);
                     }
                 }
-                tokens.add(sb.toString());
-                sb = new StringBuilder();
                 continue;
             }
             if (' ' != character) {
