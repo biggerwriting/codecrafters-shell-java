@@ -21,13 +21,13 @@ public class Type implements Strategy {
 
         String command = tokens[1];
         if (builtin.contains(command)) {
-            return command + " is a shell builtin";
+            return command + " is a shell builtin\n";
         }
         String dir = FileUtils.pathInclued(command);
         if (dir != null) {
-            return String.format("%s is %s", command, dir);
+            return String.format("%s is %s\n", command, dir);
         } else {
-            return command + ": not found";
+            return command + ": not found\n";
         }
     }
 }
