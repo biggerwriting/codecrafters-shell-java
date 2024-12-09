@@ -9,28 +9,30 @@ import java.util.List;
  * @Date: 2024/12/9
  */
 public class StringUtils {
-    public static String[] parseCommand(String input){
+    public static String[] parseCommand(String input) {
         List<String> tokens = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
             char character = input.charAt(i);
-            if('\''==character){
-                while ('\''!=(character=input.charAt(++i))){
+            if ('\'' == character) {
+                while ('\'' != (character = input.charAt(++i))) {
                     sb.append(character);
                 }
                 tokens.add(sb.toString());
-                sb=new StringBuilder();
+                sb = new StringBuilder();
                 continue;
             }
-            if(' '!=character){
+            if (' ' != character) {
                 sb.append(character);
-            }else if(!sb.isEmpty()){
+            } else if (!sb.isEmpty()) {
                 tokens.add(sb.toString());
-                sb=new StringBuilder();
+                sb = new StringBuilder();
             }
         }
-        tokens.add(sb.toString());
-        return  tokens.toArray(tokens.toArray(new String[0]));
+        if (!sb.isEmpty()) {
+            tokens.add(sb.toString());
+        }
+        return tokens.toArray(tokens.toArray(new String[0]));
     }
 
     public static void main(String[] args) {
