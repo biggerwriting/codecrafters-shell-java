@@ -22,7 +22,7 @@ public class Cd implements Strategy {
         if (tokens.length > 1) {
             String dir = tokens[1];
             dir = getAbsPath(dir);
-            return checkDir(dir)+'\n';
+            return checkDir(dir);
         }
         return null;
     }
@@ -58,8 +58,15 @@ public class Cd implements Strategy {
             pwd = file.getAbsolutePath();
             return null;
         } else {
-            return String.format("cd: %s: No such file or directory", dir);
+            return String.format("cd: %s: No such file or directory\n", dir);
         }
     }
+//  cd /tmp/mango/raspberry/apple
+public static void main(String[] args) {
+    String input = "cd /tmp/mango/raspberry/apple";
 
+    Cd cd = new Cd();
+    String command = cd.command(input);
+    System.out.println(command);
+}
 }
