@@ -30,9 +30,12 @@ public class Cat implements Strategy {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
         }
+        sb.append('\n');
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+
     }
 }
