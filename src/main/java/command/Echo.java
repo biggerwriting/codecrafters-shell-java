@@ -1,5 +1,7 @@
 package command;
 
+import java.util.Arrays;
+
 import static util.StringUtils.parseCommand;
 
 /**
@@ -10,6 +12,6 @@ public class Echo implements Strategy {
     @Override
     public String command(String input) {
         String[] tokens = parseCommand(input);
-        return tokens[1];
+        return String.join(" ", Arrays.stream(tokens, 1, tokens.length).toArray(String[]::new));
     }
 }
