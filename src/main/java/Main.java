@@ -23,8 +23,10 @@ public class Main {
                 processer = new Processer(new Type());
             } else if ("pwd".equalsIgnoreCase(command)) {
                 processer = new Processer(new Pwd());
-            }  else if ("cd".equalsIgnoreCase(command)) {
+            } else if ("cd".equalsIgnoreCase(command)) {
                 processer = new Processer(new Cd());
+            } else if ("cat".equalsIgnoreCase(command)) {
+                processer = new Processer(new Cat());
             } else if (dir != null) {
                 processer = new Processer(new LocalComand(dir));
             } else {

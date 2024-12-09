@@ -2,6 +2,9 @@ package command;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+
+import static util.StringUtils.parseCommand;
 
 /**
  * @Author: tongqianwen
@@ -17,10 +20,11 @@ public class LocalComand implements Strategy{
     @Override
     public String command(String input) {
         try {
-            String[] tokens = input.split(" ");
+            String[] tokens = parseCommand(input);
             tokens[0] = dir;
             Process process = Runtime.getRuntime().exec(tokens);
             process.getInputStream().transferTo(System.out);
+            //Files.copy(process.getInputStream(), System.out);
         } catch (IOException e) {
             e.printStackTrace();
         }

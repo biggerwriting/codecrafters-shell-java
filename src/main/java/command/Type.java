@@ -6,6 +6,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Set;
 
+import static util.StringUtils.parseCommand;
+
 /**
  * @Author: tongqianwen
  * @Date: 2024/12/3
@@ -15,7 +17,7 @@ public class Type implements Strategy {
 
     @Override
     public String command(String input) {
-        String[] tokens = input.split(" ");
+        String[] tokens = parseCommand(input);
 
         String command = tokens[1];
         if (builtin.contains(command)) {
