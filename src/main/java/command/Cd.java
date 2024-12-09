@@ -22,7 +22,7 @@ public class Cd implements Strategy {
         if (tokens.length > 1) {
             String dir = tokens[1];
             dir = getAbsPath(dir);
-            return checkDir(dir);
+            return checkDir(dir)+'\n';
         }
         return null;
     }
