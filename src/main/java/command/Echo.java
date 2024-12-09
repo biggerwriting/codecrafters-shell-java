@@ -12,7 +12,7 @@ public class Echo implements Strategy {
     @Override
     public String command(String input) {
         String[] tokens = parseCommand(input);
-        return String.join(" ", Arrays.stream(tokens, 1, tokens.length).toArray(String[]::new));
+        return String.join(" ", Arrays.stream(tokens, 1, tokens.length).toArray(String[]::new))+'\n';
     }
 
     public static void main(String[] args) {
