@@ -23,7 +23,7 @@ public class Cat implements Strategy {
 
                 byte[] array = new byte[1024];
                 int readLength = 0;
-                while (0 != inputStream.read(array)) {
+                while (-1 != (readLength = inputStream.read(array))) {
                     sb.append(new String(array, 0, readLength));
                 }
 
@@ -31,11 +31,14 @@ public class Cat implements Strategy {
                 throw new RuntimeException(e);
             }
         }
-        sb.append('\n');
         return sb.toString();
     }
 
     public static void main(String[] args) {
+String input ="cat .\\README.md";
 
+Cat cat =new Cat();
+        String command = cat.command(input);
+        System.out.println(command);
     }
 }
