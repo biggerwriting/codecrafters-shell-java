@@ -44,9 +44,9 @@ public class Cd implements Strategy {
         } else if ("~".equals(dir)) {
             dir = HOME_DIR;
         } else if (dir.startsWith("." + File.separator)) {
-            dir = pwd + dir.substring(1);
+            dir = pwd + File.separator + dir.substring(1);
         } else {
-            dir = pwd + dir;
+            dir = pwd + File.separator + dir;
         }
         return dir;
     }

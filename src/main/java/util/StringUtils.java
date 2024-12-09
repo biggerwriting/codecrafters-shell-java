@@ -16,7 +16,11 @@ public class StringUtils {
             char character = input.charAt(i);
             if ('\'' == character) {
                 while ('\'' != (character = input.charAt(++i))) {
-                    sb.append(character);
+                    if ('\\' == character) {
+                        sb.append(input.charAt(++i));
+                    } else {
+                        sb.append(character);
+                    }
                 }
                 tokens.add(sb.toString());
                 sb = new StringBuilder();
@@ -24,7 +28,11 @@ public class StringUtils {
             }
             if ('"' == character) {
                 while ('"' != (character = input.charAt(++i))) {
-                    sb.append(character);
+                    if ('\\' == character) {
+                        sb.append(input.charAt(++i));
+                    } else {
+                        sb.append(character);
+                    }
                 }
                 tokens.add(sb.toString());
                 sb = new StringBuilder();
