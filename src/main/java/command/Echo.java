@@ -16,7 +16,7 @@ public class Echo implements Strategy {
     }
 
     public static void main(String[] args) {
-        String input="echo world     script";
+        String input="echo world  \\    script";
         Echo echo = new Echo();
         String command = echo.command(input);
         System.out.println(command);

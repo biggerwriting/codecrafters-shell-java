@@ -31,7 +31,11 @@ public class StringUtils {
                 continue;
             }
             if (' ' != character) {
-                sb.append(character);
+                if ('\\' == character) {
+                    sb.append(input.charAt(++i));
+                } else {
+                    sb.append(character);
+                }
             } else if (!sb.isEmpty()) {
                 tokens.add(sb.toString());
                 sb = new StringBuilder();
