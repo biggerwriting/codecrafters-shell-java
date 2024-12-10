@@ -20,11 +20,11 @@ public class StringUtils {
         for (int i = 0; i < input.length(); i++) {
             char character = input.charAt(i);
             if (SINGLE == character) {
-                i = processQuote(SINGLE, input, i, sb);
+                i = processSingleQuote(SINGLE, input, i, sb);
                 continue;
             }
             if (DOUBLE == character) {
-                i = processQuote(DOUBLE, input, i, sb);
+                i = processDubleQuote(DOUBLE, input, i, sb);
                 continue;
             }
             if (SPACE != character) {
@@ -43,16 +43,33 @@ public class StringUtils {
         }
         return tokens.toArray(tokens.toArray(new String[0]));
     }
-
-    private static int processQuote(char quote, String input, int i, StringBuilder sb) {
+    private static int processSingleQuote(char quote, String input, int i, StringBuilder sb) {
         char character;
         while (quote != (character = input.charAt(++i))) {
             if (BACKSLASH == character) {
                 char nextChar = input.charAt(++i);
                 if (quote == nextChar) {
                     sb.append(nextChar);
-//                } else if (BACKSLASH == nextChar) {
-//                    sb.append(nextChar);
+                } else {
+                    sb.append(character);
+                    sb.append(nextChar);
+                }
+            } else {
+                sb.append(character);
+            }
+        }
+        return i;
+    }
+
+    private static int processDubleQuote(char quote, String input, int i, StringBuilder sb) {
+        char character;
+        while (quote != (character = input.charAt(++i))) {
+            if (BACKSLASH == character) {
+                char nextChar = input.charAt(++i);
+                if (quote == nextChar) {
+                    sb.append(nextChar);
+                } else if (BACKSLASH == nextChar) {
+                    sb.append(nextChar);
                 } else {
                     sb.append(character);
                     sb.append(nextChar);

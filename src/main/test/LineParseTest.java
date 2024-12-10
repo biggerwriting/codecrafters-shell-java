@@ -1,5 +1,6 @@
 import command.Echo;
 import org.junit.jupiter.api.Test;
+import shell.LineParser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static util.StringUtils.parseCommand;
@@ -12,6 +13,14 @@ public class LineParseTest {
 
     @Test
     void testBackslash() {
+        /**
+         *
+         remote: [tester::#GU3] > echo "hello'shell'\\n'world"
+         remote: [tester::#GU3] Expected: "hello'shell'\n'world"
+
+         */
+        assertThat(parse("echo \"hello'shell'\\\\n'world\""))
+                .containsExactly("echo", "hello'shell'\\n'world");
         //
         // > echo 'shell\\\ntest'
         // Expected: "shell\\\ntest"
@@ -44,9 +53,7 @@ public class LineParseTest {
                 .containsExactly("echo", "hello\"insidequotesscript\"");
     }
 
-    String[] parse(String input) {
-
-        return  parseCommand(  input);
-    }
+//    String[] parse(String line) { return new LineParser(line).parse(); }
+    String[] parse(String input) {return  parseCommand(  input);}
 
 }

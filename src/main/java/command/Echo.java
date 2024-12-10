@@ -24,12 +24,14 @@ public class Echo implements Strategy {
         // Expected: "shell\\\ntest"
         input="echo 'shell\\\\\\ntest'";
         command = echo.command(input);
+        assert "\"shell\\\\\\ntest\"".equals(command);
         System.out.println(command);
 
         // > echo "mixed\"quote'hello'\\"
         // Expected: "mixed"quote'hello'\"
         input="echo \"mixed\\\"quote'hello'\\\\\"";
         command = echo.command(input);
+        assert "\"mixed\"quote'hello'\\\"".equals(command);
         System.out.println(command);
 
 
