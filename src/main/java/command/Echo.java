@@ -20,9 +20,14 @@ public class Echo implements Strategy {
         String input;
         String command;
 
+        // > echo 'shell\\\ntest'
+        // Expected: "shell\\\ntest"
+        input="echo 'shell\\\\\\ntest'";
+        command = echo.command(input);
+        System.out.println(command);
+
         // > echo "mixed\"quote'hello'\\"
         // Expected: "mixed"quote'hello'\"
-        // Expected:  mixed"quote'hello'\\
         input="echo \"mixed\\\"quote'hello'\\\\\"";
         command = echo.command(input);
         System.out.println(command);

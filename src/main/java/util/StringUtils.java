@@ -9,39 +9,26 @@ import java.util.List;
  * @Date: 2024/12/9
  */
 public class StringUtils {
+    public static final char SPACE = ' ';
+    public static final char SINGLE = '\'';
+    public static final char DOUBLE = '"';
+    public static final char BACKSLASH = '\\';
+
     public static String[] parseCommand(String input) {
         List<String> tokens = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
             char character = input.charAt(i);
-            if ('\'' == character) {
-                while ('\'' != (character = input.charAt(++i))) {
-                    if ('\\' == character) {
-                        if ('\'' != (character = input.charAt(++i)) && '\\' != character) {
-                            sb.append('\\');
-                        }
-                        sb.append(character);
-                    } else {
-                        sb.append(character);
-                    }
-                }
+            if (SINGLE == character) {
+                i = processQuote(SINGLE, input, i, sb);
                 continue;
             }
-            if ('"' == character) {
-                while ('"' != (character = input.charAt(++i))) {
-                    if ('\\' == character) {
-                        if ('"' != (character = input.charAt(++i)) && '\\' != character) {
-                            sb.append('\\');
-                        }
-                        sb.append(character);
-                    } else {
-                        sb.append(character);
-                    }
-                }
+            if (DOUBLE == character) {
+                i = processQuote(DOUBLE, input, i, sb);
                 continue;
             }
-            if (' ' != character) {
-                if ('\\' == character) {
+            if (SPACE != character) {
+                if (BACKSLASH == character) {
                     sb.append(input.charAt(++i));
                 } else {
                     sb.append(character);
@@ -55,6 +42,26 @@ public class StringUtils {
             tokens.add(sb.toString());
         }
         return tokens.toArray(tokens.toArray(new String[0]));
+    }
+
+    private static int processQuote(char quote, String input, int i, StringBuilder sb) {
+        char character;
+        while (quote != (character = input.charAt(++i))) {
+            if (BACKSLASH == character) {
+                char nextChar = input.charAt(++i);
+                if (quote == nextChar) {
+                    sb.append(nextChar);
+//                } else if (BACKSLASH == nextChar) {
+//                    sb.append(nextChar);
+                } else {
+                    sb.append(character);
+                    sb.append(nextChar);
+                }
+            } else {
+                sb.append(character);
+            }
+        }
+        return i;
     }
 
     public static void main(String[] args) {
