@@ -3,6 +3,8 @@ import util.FileUtils;
 
 import java.util.Scanner;
 
+import static util.StringUtils.parseCommand;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -12,7 +14,7 @@ public class Main {
         while (!"exit 0".equalsIgnoreCase((input = scanner.nextLine()))) {
             Processer processer;
             String result;
-            String[] tokens = input.split(" ");
+            String[] tokens = parseCommand(input);
             String command = tokens[0];
 
             // 检查是否为本地path路径下的命令 check if this is command under local path
